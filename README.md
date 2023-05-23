@@ -34,8 +34,10 @@ Social-Network is a stateful app built with Spring Boot, MySQL and Thymeleaf.
 
 
 # App screenshots:
-![mainfeed](https://github.com/buchserge/social_network/assets/70943936/7288fef6-ab8c-4364-a64c-cf62e531e7e5)
-![profileMessages](https://github.com/buchserge/social_network/assets/70943936/fa5faf9b-d3cb-4dca-b38a-f93186db9665)
-![comments screen](https://github.com/buchserge/social_network/assets/70943936/14a94878-2fa1-4444-bbf4-3a616c59f4f7)
+![mainfeed](https://github.com/buchserge/social_network_final/assets/70943936/8ae5d3b0-5c45-4587-b880-f81bc4711276)
+![profileMessages](https://github.com/buchserge/social_network_final/assets/70943936/c29250b8-ef3b-40f0-b3f3-204100d51fc4)
+![comments screen](https://github.com/buchserge/social_network_final/assets/70943936/a2f81718-de2f-465b-8ca3-6714e639ef95)
+
 ### Chat: 
-![chat](https://github.com/buchserge/social_network/assets/70943936/5399adec-e941-4d47-8ea0-738b916020a5)
+![chat](https://github.com/buchserge/social_network_final/assets/70943936/e66ecab2-2024-4bfd-9398-d1896698ba53)
+
