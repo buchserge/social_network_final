@@ -1,7 +1,7 @@
 
 Social-Network is a stateful app built with Spring Boot, MySQL and Thymeleaf.
 # Tools and Technologies:
-+ Java
++ Java(17)
 + MySQL
 + Thymeleaf
 + Spring MVC
