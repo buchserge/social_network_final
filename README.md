@@ -1,7 +1,7 @@
 
 Social-Network is a stateful app built with Spring Boot, MySQL and Thymeleaf.
 # Tools and Technologies:
-+ Java
++ Java(17)
 + MySQL
 + Thymeleaf
 + Spring MVC
@@ -20,6 +20,7 @@ Social-Network is a stateful app built with Spring Boot, MySQL and Thymeleaf.
 + Creating and deleting users
 + Following/Unfollowing users 
 + Editing user profile
++ Pagination
 + Searching for friends
 + Writing messages
 + Deleting messages
@@ -27,7 +28,7 @@ Social-Network is a stateful app built with Spring Boot, MySQL and Thymeleaf.
 + Commenting messages
 + Uploading profile photo
 + Changing username and password
-+ Chat functionality: writing and receiving messages from your friends
++ Chat functionality: writing and receiving messages from your friends(WebSockets)
 + Sending messages to offline users
 + Notifications when new messages are recieved
 + Notifications when friends are online
