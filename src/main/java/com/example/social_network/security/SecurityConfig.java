@@ -38,11 +38,14 @@ public class SecurityConfig {
 
         http.cors(AbstractHttpConfigurer::disable);
         http.csrf(AbstractHttpConfigurer::disable)
+
+
                 .authorizeHttpRequests(auth -> auth.requestMatchers("/api/**").permitAll())
                 .authorizeHttpRequests(auth -> auth.requestMatchers("/login").permitAll())
                 .authorizeHttpRequests(auth -> auth.requestMatchers("/badLogin").permitAll())
                 .authorizeHttpRequests(auth -> auth.requestMatchers("/regandconfirm").permitAll())
                 .authorizeHttpRequests(auth -> auth.requestMatchers("/reg").permitAll())
+                .authorizeHttpRequests(auth -> auth.requestMatchers("/ws/**").permitAll())
 
                 .authorizeHttpRequests(auth -> auth.anyRequest().authenticated())
                 .formLogin(form -> form.loginPage("/login").usernameParameter("name").passwordParameter("password").failureUrl("/badLogin").defaultSuccessUrl("/api/friendsMessages", true));

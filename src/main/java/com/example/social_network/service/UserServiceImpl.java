@@ -6,6 +6,7 @@ import com.example.social_network.repo.UserRepo;
 import com.example.social_network.service.interfaces.UserService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -40,7 +41,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     @Override
     public void updateUserCredentials(Long id, UserDTO userDTO) {
         User user = userRepo.findById(id).orElseThrow();
-        if (user.getUsername().equals(userDTO.getName()) || user.getPassword().equals(userDTO.getPassword())) {
+        if (user.getName().equals(userDTO.getName()) || user.getPassword().equals(userDTO.getPassword())) {
             throw new DataIntegrityViolationException("same credentials");
         }
         user.setName(userDTO.getName());

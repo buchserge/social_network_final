@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -145,11 +146,11 @@ public class ChatController {
 
     @GetMapping("/getUnreadMessages")
     @ResponseBody
-    User getUnreadMessages(@AuthenticationPrincipal User user, @RequestParam Long id) throws InterruptedException {
+    String getUnreadMessages(Principal principal, @RequestParam Long id) throws InterruptedException {
 
         User recipient = userServiceImpl.findById(id);
-        User currentUser = userServiceImpl.getUserByName(user.getName());
-        List<MessageChat> all = messageChatServiceImpl.getChatMessagesByReceiptNameAndBySenderName(user.getName(), recipient.getName());
+        User currentUser = userServiceImpl.getUserByName(principal.getName());
+        List<MessageChat> all = messageChatServiceImpl.getChatMessagesByReceiptNameAndBySenderName(principal.getName(), recipient.getName());
 
         Comparator<MessageChat> compareByCreatedAt = Comparator.comparing(MessageChat::getCreatedAt);
         all.sort(compareByCreatedAt);
@@ -158,7 +159,7 @@ public class ChatController {
             for (MessageChat mes : all
             ) {
                 Thread.sleep(10);
-                messagingTemplate.convertAndSendToUser(user.getName(), "/queue/hello", mes);
+                messagingTemplate.convertAndSendToUser(principal.getName(), "/queue/hello", mes);
             }
         }
         List<MessageChat> chatMessages = all.stream().filter(m->m.getRecipientName().equals(currentUser.getName())).map(m -> {
@@ -167,7 +168,7 @@ public class ChatController {
         }).collect(Collectors.toList());
         messageChatServiceImpl.saveCollection(chatMessages);
         deleteReadMessagesEventPublisher.publishEvent(currentUser, recipient);
-        return user;
+        return "trigger";
 
     }
 
@@ -186,11 +187,11 @@ public class ChatController {
     }
 
 
-//    @MessageMapping("/name")
-//    @SendTo("/topic/hello")
-//    public MessageChat sendMessageName(@Payload MessageChat message) throws Exception {
-//        return message;
-//    }
+    @MessageMapping("/name")
+    @SendTo("/topic/hello")
+    public MessageChat sendMessageName(@Payload MessageChat message) throws Exception {
+        return message;
+    }
 
 
 }
